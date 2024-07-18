@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Links and Form Example</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-6">
+        <!-- Form Section -->
+        <h2>Enter a Link</h2>
+        <form method="POST" action="/">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="site">Link:</label>
+            <input name="site" type="text" class="form-control" id="site" placeholder="Enter a link">
+          </div>
+          <button type="submit" class="btn btn-primary">Scrape</button>
+          <a href="/delete" class="btn btn-danger ml-2">Delete</a>
+        </form>
+      </div>
+      <div class="col-md-6">
+        <!-- Links Table Section -->
+        <h2>Links Table</h2>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Address</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for link in links %}
+            <tr>
+              <td>{{ link.id }}</td>
+              <td>{{ link.name }}</td>
+              <td>{{ link.address }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
